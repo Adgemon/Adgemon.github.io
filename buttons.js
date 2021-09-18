@@ -34,10 +34,7 @@ const planIndex = Math.floor(Math.random() * plans.length);
 const plan = plans[planIndex];
 
 
-
 document.getElementById('showLists').addEventListener('click', () => {
-	lists = [];
-	listsIndex = 0;
 
 	const spanLists =  (goals, plans) => Array.from(Array(Math.max(goals.length, plans.length)), (_, i) => [goals[i], plans[i]]);
   //lists.map(function(list) { return `<span>${list} </span>`});
@@ -46,35 +43,42 @@ document.getElementById('showLists').addEventListener('click', () => {
 
   let t = spanLists(goals,plans);
   text = o.toString();
-	messageElement.innerHTML = (text);
-	messageElement.childNodes[0].className = 'highlight' ;
+  messageElement.innerHTML = text;
+	//messageElement.childNodes[0].className = 'highlight' ;
 	 // Clear any prior messages
-	 messageElement.innerText = '';
+	 messageElement.innerText = t;
 });
 
+
+
+	//typedValueElement.addEventListener('input', () => {
+
+//});
 
 document.getElementById('addGoals').addEventListener('click', () => {
 	messageElement.innerText = '';
 	// Clear the textbox
-    typedValueElement.value = '';
-    // set focus
-    typedValueElement.focus();
-    // set the event handler
-	typedValueElement.addEventListener('input', () => {
-
+    inputValue = document.getElementById("input").value;
+    goals.push(inputValue);
+    //x.innerHTML = number.join('<br/>');
 });
 
 document.getElementById('addPlans').addEventListener('click', () => {
 	messageElement.innerText = '';
 	// Clear the textbox
-    typedValueElement.value = '';
-    // set focus
-    typedValueElement.focus();
-    // set the event handler
-  
+    inputValue = document.getElementById("input").value;
+    plans.push(inputValue);
+    //x.innerHTML = number.join('<br/>');
 });
-
-
+document.getElementById('removeItem').addEventListener('click', () => {
+  inputValue = document.getElementById("input").value;
+  let idx = goals.indexOf(inputValue)
+  let idx2 = plans.indexOf(inputValue);
+  if (idx !== -1) goals.splice(idx, 1) ;
+  if (idx2 !== -1) plans.splice(idx, 1);
+   // x.innerHTML = number.join('<br/>');
+});
+/*
 typedValueElement.addEventListener('input', () => {
     // Get the current word
     const currentWord = words[wordIndex];
@@ -107,4 +111,4 @@ typedValueElement.addEventListener('input', () => {
       // error state
       typedValueElement.className = 'error';
     }
-  })});
+  });*/
